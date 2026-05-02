@@ -37,6 +37,7 @@
     body {
       margin: 0;
       min-height: 100vh;
+      overflow-x: hidden;
       color: var(--ink);
       font-family: Arial, Helvetica, sans-serif;
       background:
@@ -330,14 +331,60 @@
       color: var(--paper-ink);
     }
 
-    @media (max-width: 860px) {
+    @media (max-width: 860px), (pointer: coarse) {
+      body {
+        background-size: 54px 54px;
+      }
+
+      .app {
+        width: 100%;
+        max-width: 640px;
+        overflow: hidden;
+        padding-right: 12px;
+        padding-left: 12px;
+        padding-top: max(82px, env(safe-area-inset-top));
+        padding-bottom: 28px;
+      }
+
       .top {
         grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 14px;
+        min-width: 0;
+      }
+
+      .top > * {
+        min-width: 0;
+      }
+
+      h1 {
+        max-width: 100%;
+        font-size: 24px;
+        line-height: 1.08;
+        overflow-wrap: break-word;
+      }
+
+      .hint {
+        max-width: 100%;
+        font-size: 14px;
+        overflow-wrap: break-word;
+      }
+
+      .search {
+        min-height: 54px;
+        font-size: 18px;
       }
 
       .butterfly {
-        min-height: auto;
-        padding: 18px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        width: 100%;
+        min-height: 0;
+        padding: 14px;
+        overflow: visible;
+        border-radius: 8px;
+        background-size: 54px 54px;
       }
 
       .center-title,
@@ -350,15 +397,18 @@
         bottom: auto;
         width: 100%;
         min-height: 0;
+        height: auto;
         transform: none;
       }
 
       .center-title {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        width: 100%;
         transform: none;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-bottom: 14px;
+        gap: 10px;
+        margin-bottom: 2px;
       }
 
       .body-line {
@@ -366,14 +416,68 @@
       }
 
       .wing {
-        margin-top: 12px;
-        padding: 24px;
-        border-width: 4px;
+        display: grid;
+        min-width: 0;
+        gap: 10px;
+        margin: 0;
+        padding: 14px;
+        border-width: 3px;
         border-radius: 8px;
+        background: rgba(0, 0, 0, 0.5);
       }
 
       .wing > * {
         transform: none;
+      }
+
+      .wing.ja,
+      .wing.mywy,
+      .wing.ty,
+      .wing.oni {
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        width: 100%;
+        min-height: 0;
+        border-radius: 8px;
+        transform: none;
+      }
+
+      .word-chip {
+        max-width: 100%;
+        min-height: 44px;
+        font-size: clamp(28px, 9vw, 38px);
+        white-space: normal;
+        text-align: center;
+      }
+
+      .label {
+        font-size: 27px;
+      }
+
+      .forms {
+        min-width: 0;
+        width: 100%;
+      }
+
+      .form-chip {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        font-size: clamp(27px, 8vw, 34px);
+        line-height: 1.08;
+      }
+
+      .pick-list {
+        max-height: 160px;
+        overflow: auto;
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+
+      .pick {
+        min-height: 40px;
       }
     }
   </style>
@@ -383,7 +487,7 @@
     <header class="top">
       <div>
         <h1>Бабочка польских глаголов</h1>
-        <p class="hint">Введи русский глагол: если он есть в словаре, формы сразу разложатся по крыльям.</p>
+        <p class="hint">Введи русский глагол — формы появятся ниже.</p>
       </div>
       <label class="search-box">
         <input class="search" id="verbSearch" type="text" placeholder="Например: гулять" autocomplete="off">
