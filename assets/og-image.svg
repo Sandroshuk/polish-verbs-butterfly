@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse">
+      <path d="M72 0H0V72" fill="none" stroke="#2c2f36" stroke-width="3"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity=".45"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="630" fill="#050505"/>
+  <rect width="1200" height="630" fill="url(#grid)" opacity=".9"/>
+
+  <path d="M578 270C520 148 382 82 250 110C112 139 66 250 102 342C134 422 226 422 322 386C417 350 504 350 578 270Z" fill="#080808" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M622 270C680 148 818 82 950 110C1088 139 1134 250 1098 342C1066 422 974 422 878 386C783 350 696 350 622 270Z" fill="#080808" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M574 332C508 420 408 490 278 476C156 462 132 376 198 314C272 245 443 276 574 332Z" fill="#080808" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M626 332C692 420 792 490 922 476C1044 462 1068 376 1002 314C928 245 757 276 626 332Z" fill="#080808" stroke="#fff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M600 205V400" stroke="#fff" stroke-width="16" stroke-linecap="round"/>
+  <path d="M575 270C586 288 614 288 625 270" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+  <path d="M575 420C586 402 614 402 625 420" fill="none" stroke="#fff" stroke-width="12" stroke-linecap="round"/>
+
+  <g filter="url(#shadow)">
+    <rect x="390" y="42" width="172" height="76" fill="#fff"/>
+    <text x="476" y="92" text-anchor="middle" font-family="Georgia,serif" font-size="45" fill="#080808">гулять</text>
+    <rect x="602" y="42" width="245" height="76" fill="#fff200"/>
+    <text x="724" y="92" text-anchor="middle" font-family="Georgia,serif" font-size="45" fill="#080808">spacerować</text>
+  </g>
+
+  <text x="145" y="165" font-family="Comic Sans MS,Trebuchet MS,cursive" font-size="48" fill="#fff">Ja</text>
+  <text x="780" y="165" font-family="Comic Sans MS,Trebuchet MS,cursive" font-size="48" fill="#fff">My / Wy</text>
+  <text x="170" y="402" font-family="Comic Sans MS,Trebuchet MS,cursive" font-size="43" fill="#fff">Ty · On/Ona</text>
+  <text x="720" y="402" font-family="Comic Sans MS,Trebuchet MS,cursive" font-size="43" fill="#fff">Oni / One</text>
+
+  <g font-family="Georgia,serif" font-size="42" fill="#090909" filter="url(#shadow)">
+    <rect x="120" y="190" width="282" height="62" fill="#fff200"/>
+    <text x="145" y="233"><tspan text-decoration="underline" text-decoration-color="#ff43dc">spacer</tspan><tspan fill="#0076a8">uj</tspan> - ę</text>
+
+    <rect x="745" y="190" width="410" height="112" fill="#fff200"/>
+    <text x="772" y="234"><tspan text-decoration="underline" text-decoration-color="#ff43dc">spacer</tspan> - <tspan fill="#0076a8">uj</tspan> - emy</text>
+    <text x="772" y="284"><tspan text-decoration="underline" text-decoration-color="#ff43dc">spacer</tspan> - <tspan fill="#0076a8">uj</tspan> - ecie</text>
+
+    <rect x="142" y="426" width="330" height="100" fill="#fff200"/>
+    <text x="168" y="468"><tspan text-decoration="underline" text-decoration-color="#ff43dc">spacer</tspan><tspan fill="#0076a8">uj</tspan> - e</text>
+    <text x="168" y="518"><tspan text-decoration="underline" text-decoration-color="#ff43dc">spacer</tspan><tspan fill="#0076a8">uj</tspan> - esz</text>
+
+    <rect x="772" y="426" width="282" height="62" fill="#fff200"/>
+    <text x="798" y="469"><tspan text-decoration="underline" text-decoration-color="#ff43dc">spacer</tspan><tspan fill="#0076a8">uj</tspan> - ą</text>
+  </g>
+
+  <text x="600" y="594" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="30" fill="#d7d7d7">Бабочка польских глаголов</text>
+</svg>
