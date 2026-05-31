@@ -136,6 +136,7 @@
       display: inline-flex;
       align-items: center;
       min-height: 58px;
+      border: 0;
       padding: 4px 10px;
       background: var(--paper);
       color: var(--paper-ink);
@@ -147,6 +148,37 @@
 
     .word-chip.yellow {
       background: var(--yellow);
+    }
+
+    .speak-chip,
+    .form-chip {
+      cursor: pointer;
+    }
+
+    .speak-chip {
+      gap: 8px;
+    }
+
+    .speak-chip::after {
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-top: 0.22em solid transparent;
+      border-bottom: 0.22em solid transparent;
+      border-left: 0.34em solid currentColor;
+      content: "";
+      opacity: 0.72;
+    }
+
+    .speak-chip:hover,
+    .form-chip:hover {
+      box-shadow: 0 0 0 3px rgba(112, 217, 255, 0.35);
+    }
+
+    .speak-chip:focus-visible,
+    .form-chip:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
     }
 
     .body-line {
@@ -275,6 +307,7 @@
       display: inline-block;
       width: fit-content;
       max-width: 100%;
+      border: 0;
       padding: 5px 9px 6px;
       color: var(--paper-ink);
       background: var(--paper);
@@ -498,7 +531,7 @@
     <section class="butterfly" aria-label="Бабочка спряжения">
       <div class="center-title">
         <span class="word-chip" id="russianVerb">гулять</span>
-        <span class="word-chip yellow" id="polishVerb">spacerować</span>
+        <button class="word-chip yellow speak-chip" id="polishVerb" type="button" aria-label="Произнести spacerować">spacerować</button>
       </div>
 
       <div class="body-line" aria-hidden="true"></div>
@@ -580,13 +613,64 @@
       ["вставать", "wstawać", "wstaję", "wstają", "wstajesz", "wstaje", "wstajemy", "wstajecie"],
       ["ложиться", "kłaść się", "kładę się", "kładą się", "kładziesz się", "kładzie się", "kładziemy się", "kładziecie się"],
       ["забывать", "zapominać", "zapominam", "zapominają", "zapominasz", "zapomina", "zapominamy", "zapominacie"],
-      ["помнить", "pamiętać", "pamiętam", "pamiętają", "pamiętasz", "pamięta", "pamiętamy", "pamiętacie"]
+      ["помнить", "pamiętać", "pamiętam", "pamiętają", "pamiętasz", "pamięta", "pamiętamy", "pamiętacie"],
+      ["нужно", "potrzebować", "potrzebuję", "potrzebują", "potrzebujesz", "potrzebuje", "potrzebujemy", "potrzebujecie"],
+      ["должен", "musieć", "muszę", "muszą", "musisz", "musi", "musimy", "musicie"],
+      ["уметь", "potrafić", "potrafię", "potrafią", "potrafisz", "potrafi", "potrafimy", "potraficie"],
+      ["использовать", "używać", "używam", "używają", "używasz", "używa", "używamy", "używacie"],
+      ["учить", "uczyć", "uczę", "uczą", "uczysz", "uczy", "uczymy", "uczycie"],
+      ["начинать", "zaczynać", "zaczynam", "zaczynają", "zaczynasz", "zaczyna", "zaczynamy", "zaczynacie"],
+      ["заканчивать", "kończyć", "kończę", "kończą", "kończysz", "kończy", "kończymy", "kończycie"],
+      ["показывать", "pokazywać", "pokazuję", "pokazują", "pokazujesz", "pokazuje", "pokazujemy", "pokazujecie"],
+      ["продавать", "sprzedawać", "sprzedaję", "sprzedają", "sprzedajesz", "sprzedaje", "sprzedajemy", "sprzedajecie"],
+      ["получать", "dostawać", "dostaję", "dostają", "dostajesz", "dostaje", "dostajemy", "dostajecie"],
+      ["встречать", "spotykać", "spotykam", "spotykają", "spotykasz", "spotyka", "spotykamy", "spotykacie"],
+      ["встречаться", "spotykać się", "spotykam się", "spotykają się", "spotykasz się", "spotyka się", "spotykamy się", "spotykacie się"],
+      ["путешествовать", "podróżować", "podróżuję", "podróżują", "podróżujesz", "podróżuje", "podróżujemy", "podróżujecie"],
+      ["выбирать", "wybierać", "wybieram", "wybierają", "wybierasz", "wybiera", "wybieramy", "wybieracie"],
+      ["менять", "zmieniać", "zmieniam", "zmieniają", "zmieniasz", "zmienia", "zmieniamy", "zmieniacie"],
+      ["чувствовать", "czuć", "czuję", "czują", "czujesz", "czuje", "czujemy", "czujecie"],
+      ["болеть", "chorować", "choruję", "chorują", "chorujesz", "choruje", "chorujemy", "chorujecie"],
+      ["лежать", "leżeć", "leżę", "leżą", "leżysz", "leży", "leżymy", "leżycie"],
+      ["стоять", "stać", "stoję", "stoją", "stoisz", "stoi", "stoimy", "stoicie"],
+      ["сидеть", "siedzieć", "siedzę", "siedzą", "siedzisz", "siedzi", "siedzimy", "siedzicie"],
+      ["носить", "nosić", "noszę", "noszą", "nosisz", "nosi", "nosimy", "nosicie"],
+      ["становиться", "zostawać", "zostaję", "zostają", "zostajesz", "zostaje", "zostajemy", "zostajecie"],
+      ["принимать душ", "brać prysznic", "biorę prysznic", "biorą prysznic", "bierzesz prysznic", "bierze prysznic", "bierzemy prysznic", "bierzecie prysznic"],
+      ["купаться", "kąpać się", "kąpię się", "kąpią się", "kąpiesz się", "kąpie się", "kąpiemy się", "kąpiecie się"],
+      ["чистить зубы", "myć zęby", "myję zęby", "myją zęby", "myjesz zęby", "myje zęby", "myjemy zęby", "myjecie zęby"],
+      ["одеваться", "ubierać się", "ubieram się", "ubierają się", "ubierasz się", "ubiera się", "ubieramy się", "ubieracie się"],
+      ["делать перерыв", "robić przerwę", "robię przerwę", "robią przerwę", "robisz przerwę", "robi przerwę", "robimy przerwę", "robicie przerwę"],
+      ["делать покупки", "robić zakupy", "robię zakupy", "robią zakupy", "robisz zakupy", "robi zakupy", "robimy zakupy", "robicie zakupy"],
+      ["смотреть телевизор", "oglądać telewizję", "oglądam telewizję", "oglądają telewizję", "oglądasz telewizję", "ogląda telewizję", "oglądamy telewizję", "oglądacie telewizję"],
+      ["ужинать", "jeść kolację", "jem kolację", "jedzą kolację", "jesz kolację", "je kolację", "jemy kolację", "jecie kolację"],
+      ["обедать", "jeść obiad", "jem obiad", "jedzą obiad", "jesz obiad", "je obiad", "jemy obiad", "jecie obiad"],
+      ["идти на прогулку", "iść na spacer", "idę na spacer", "idą na spacer", "idziesz na spacer", "idzie na spacer", "idziemy na spacer", "idziecie na spacer"],
+      ["говорить по телефону", "rozmawiać przez telefon", "rozmawiam przez telefon", "rozmawiają przez telefon", "rozmawiasz przez telefon", "rozmawia przez telefon", "rozmawiamy przez telefon", "rozmawiacie przez telefon"],
+      ["встречаться с друзьями", "spotykać się z przyjaciółmi", "spotykam się z przyjaciółmi", "spotykają się z przyjaciółmi", "spotykasz się z przyjaciółmi", "spotyka się z przyjaciółmi", "spotykamy się z przyjaciółmi", "spotykacie się z przyjaciółmi"],
+      ["расчесываться", "czesać się", "czeszę się", "czeszą się", "czeszesz się", "czesze się", "czeszemy się", "czeszecie się"],
+      ["краситься/делать макияж", "malować się", "maluję się", "malują się", "malujesz się", "maluje się", "malujemy się", "malujecie się"],
+      ["выходить из дома", "wychodzić z domu", "wychodzę z domu", "wychodzą z domu", "wychodzisz z domu", "wychodzi z domu", "wychodzimy z domu", "wychodzicie z domu"],
+      ["готовить обед", "gotować obiad", "gotuję obiad", "gotują obiad", "gotujesz obiad", "gotuje obiad", "gotujemy obiad", "gotujecie obiad"],
+      ["отдыхать", "odpoczywać", "odpoczywam", "odpoczywają", "odpoczywasz", "odpoczywa", "odpoczywamy", "odpoczywacie"],
+      ["убираться", "sprzątać", "sprzątam", "sprzątają", "sprzątasz", "sprząta", "sprzątamy", "sprzątacie"],
+      ["планировать день", "planować dzień", "planuję dzień", "planują dzień", "planujesz dzień", "planuje dzień", "planujemy dzień", "planujecie dzień"],
+      ["мыть посуду", "myć naczynia", "myję naczynia", "myją naczynia", "myjesz naczynia", "myje naczynia", "myjemy naczynia", "myjecie naczynia"],
+      ["развешивать белье", "wieszać pranie", "wieszam pranie", "wieszają pranie", "wieszasz pranie", "wiesza pranie", "wieszamy pranie", "wieszacie pranie"],
+      ["вернуться поздно", "wrócić późno", "wrócę późno", "wrócą późno", "wrócisz późno", "wróci późno", "wrócimy późno", "wrócicie późno"],
+      ["засыпать", "zasypiać", "zasypiam", "zasypiają", "zasypiasz", "zasypia", "zasypiamy", "zasypiacie"],
+      ["разбирать покупки", "rozpakowywać zakupy", "rozpakowuję zakupy", "rozpakowują zakupy", "rozpakowujesz zakupy", "rozpakowuje zakupy", "rozpakowujemy zakupy", "rozpakowujecie zakupy"],
+      ["ответить на сообщения", "odpowiedzieć na wiadomości", "odpowiem na wiadomości", "odpowiedzą na wiadomości", "odpowiesz na wiadomości", "odpowie na wiadomości", "odpowiemy na wiadomości", "odpowiecie na wiadomości"]
     ];
 
     const dictionary = new Map(starterVerbs.map((row) => [normalize(row[0]), rowToObject(row)]));
+    dictionary.set("краситься", dictionary.get("краситься/делать макияж"));
+    dictionary.set("делать макияж", dictionary.get("краситься/делать макияж"));
     const searchInput = document.querySelector("#verbSearch");
     const status = document.querySelector("#status");
     const pickList = document.querySelector("#pickList");
+    const polishVerbButton = document.querySelector("#polishVerb");
+    let polishVoice = null;
 
     function normalize(value) {
       return value.trim().toLowerCase().replace(/ё/g, "е");
@@ -669,14 +753,17 @@
     }
 
     function formChip(form, verb, main = false, mode = "root-ending") {
-      const chip = document.createElement("div");
+      const chip = document.createElement("button");
       chip.className = main ? "form-chip main" : "form-chip";
+      chip.type = "button";
+      chip.setAttribute("aria-label", `Произнести ${form}`);
 
       const split = splitByInfinitive(form, verb);
       const suffix = split.suffix ? ` - <span class="suffix">${escapeHtml(split.suffix)}</span>` : "";
       const ending = split.ending ? ` - <span class="ending">${escapeHtml(split.ending)}</span>` : "";
       const suffixPart = mode === "root-suffix-ending" ? suffix : suffix.replace(" - ", "");
       chip.innerHTML = `<span class="root">${escapeHtml(split.root)}</span>${suffixPart}${ending}${escapeHtml(split.reflexive)}`;
+      chip.addEventListener("click", () => speakPolish(form));
       return chip;
     }
 
@@ -690,16 +777,47 @@
 
     function showVerb(verb) {
       document.querySelector("#russianVerb").textContent = verb.ru;
-      document.querySelector("#polishVerb").textContent = verb.infinitive;
+      polishVerbButton.textContent = verb.infinitive;
+      polishVerbButton.setAttribute("aria-label", `Произнести ${verb.infinitive}`);
       fillForms("#jaForms", [verb.ja], verb);
       fillForms("#mywyForms", [verb.my, verb.wy], verb, "root-suffix-ending");
       fillForms("#tyForms", [verb.onona, verb.ty], verb);
       fillForms("#oniForms", [verb.oni], verb);
-      status.textContent = `${verb.ru}: ${verb.infinitive}`;
+      status.textContent = `${verb.ru}: ${verb.infinitive}. Нажми на польское слово, чтобы услышать произношение.`;
 
       document.querySelectorAll(".pick").forEach((button) => {
         button.classList.toggle("active", normalize(button.textContent) === normalize(verb.ru));
       });
+    }
+
+    function refreshPolishVoice() {
+      if (!("speechSynthesis" in window)) {
+        return;
+      }
+
+      const voices = window.speechSynthesis.getVoices();
+      polishVoice = voices.find((voice) => voice.lang.toLowerCase().startsWith("pl")) || null;
+    }
+
+    function speakPolish(text) {
+      if (!("speechSynthesis" in window)) {
+        status.textContent = "В этом браузере нет встроенной озвучки.";
+        return;
+      }
+
+      refreshPolishVoice();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = "pl-PL";
+      utterance.rate = 0.86;
+      utterance.pitch = 1;
+
+      if (polishVoice) {
+        utterance.voice = polishVoice;
+      }
+
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utterance);
+      status.textContent = `Слушаем: ${text}`;
     }
 
     function trySearch() {
@@ -736,6 +854,12 @@
     buildPickList();
     showVerb(dictionary.get("гулять"));
     searchInput.addEventListener("input", trySearch);
+    polishVerbButton.addEventListener("click", () => speakPolish(polishVerbButton.textContent));
+
+    if ("speechSynthesis" in window) {
+      refreshPolishVoice();
+      window.speechSynthesis.onvoiceschanged = refreshPolishVoice;
+    }
   </script>
 </body>
 </html>
